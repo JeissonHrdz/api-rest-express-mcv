@@ -1,11 +1,17 @@
-const express = require('express');
-const crypto = require('node:crypto');
-const movies = require('./movies.json');
-const {validateMovie , validatePartialMovie} = require('./shemas/movies');
+import express, { json } from 'express';
+import { randomUUID } from 'node:crypto';
+//import cors from 'cors';
+import { validateMovie, validatePartialMovie } from './shemas/movies.js';
+import { readJSON } from './util.js';
+
+//import fs from 'node:fs';
+//const movies = JSON.parse(fs.readFileSync('movies.json', 'utf-8'))
+
+const movies = readJSON('./movies.json')
 
 const app = express();
 
-app.use(express.json())
+app.use(json())
 
 app.disable('x-powered-by');
 
@@ -44,7 +50,7 @@ app.post('/movies', (req, res) => {
    }
 
     const newMovie = {
-        id: crypto.randomUUID(),
+        id: randomUUID(),
         ...result.data       
     }
 
@@ -87,7 +93,7 @@ app.patch('/movies/:id', (req, res) => {
     }
    
     const { id } = req.params;
-    const movieIndex = movies.findIndex(movie => movie.id === id)
+    const movieIndex = findIndex(movie => movie.id === id)
 
     if(movieIndex === -1){
         return res.status(404).json({message: 'Movie not found'})
