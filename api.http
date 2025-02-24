@@ -1,0 +1,36 @@
+### RECUPERAR TODAS LAS PELICULAS
+
+GET http://localhost:1234/movies
+
+### RECUPERAR UNA PELICULA POR ID
+
+GET http://localhost:1234/movies/c8a7d63f-3b04-44d3-9d95-8782fd7dcfaf
+
+### RECUPERAR UNA PELICULA POR GENERO
+
+GET http://localhost:1234/movies?genre=Action
+
+### CREAR UNA NUEVA PELICULA POST
+
+POST http://localhost:1234/movies
+Content-Type: application/json
+
+{
+    "title": "Your Name",
+    "year": 2016,
+    "director": "Makoto Shinkai",
+    "duration": 106,
+    "poster": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2f9e8780-1e9b-4920-85b8-bb5270cb1e1e/dfywl24-594edaa0-8540-454d-8dcd-553499827a82.jpg/v1/fit/w_828,h_1102,q_70,strp/your_name_weathering_with_you_inspired_poster_by_nico2713_dfywl24-414w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTcwMyIsInBhdGgiOiJcL2ZcLzJmOWU4NzgwLTFlOWItNDkyMC04NWI4LWJiNTI3MGNiMWUxZVwvZGZ5d2wyNC01OTRlZGFhMC04NTQwLTQ1NGQtOGRjZC01NTM0OTk4MjdhODIuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.SEW_I3JQOBnUdMWH49-7sMIhegcr0aAz0EXQgsyESZA",
+    "genre": ["Animation", "Drama", "Romance"]  
+        
+}
+
+### ACTUALIZAR UNA PELICULA PATCH
+
+PATCH http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+Content-Type: application/json
+
+{
+    "title": "The Dark Knight Rises"
+}
+
