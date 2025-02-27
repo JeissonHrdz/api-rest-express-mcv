@@ -42,4 +42,5 @@ export class MovieModel {
     };
     return movies[movieIndex];
   }
+
 }
