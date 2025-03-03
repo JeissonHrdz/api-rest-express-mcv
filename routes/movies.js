@@ -1,19 +1,22 @@
 import { Router } from "express";
 import { readJSON } from "../util.js";
 import { MovieController } from "../controllers/movies.js";
+import { MovieModel } from "../models/mysql/movie.js";
 
 const movies = readJSON("./movies.json");
 export const moviesRouter = Router();
 
-moviesRouter.get("/",MovieController.getAll);
+const movieController = new MovieController({movieModel: MovieModel});
 
-moviesRouter.get("/:id", MovieController.getById);
+moviesRouter.get("/",movieController.getAll);
 
-moviesRouter.post("/", MovieController.create);
+moviesRouter.get("/:id", movieController.getById);
 
-moviesRouter.delete("/:id", MovieController.delete);
+moviesRouter.post("/", movieController.create);
 
-moviesRouter.patch("/:id", MovieController.update);
+moviesRouter.delete("/:id", movieController.delete);
+
+moviesRouter.patch("/:id", movieController.update);
 
 moviesRouter.options("/", (req, res) => {
   const origin = req.header("origin");

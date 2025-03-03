@@ -4,7 +4,7 @@ GET http://localhost:1234/movies
 
 ### RECUPERAR UNA PELICULA POR ID
 
-GET http://localhost:1234/movies/c8a7d63f-3b04-44d3-9d95-8782fd7dcfaf
+GET http://localhost:1234/movies/4091efe1-f45b-11ef-8ad6-089798eed6d2
 
 ### RECUPERAR UNA PELICULA POR GENERO
 
@@ -27,14 +27,15 @@ Content-Type: application/json
 
 ### ACTUALIZAR UNA PELICULA PATCH
 
-PATCH http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+PATCH http://localhost:1234/movies/4091f178-f45b-11ef-8ad6-089798eed6d2
 Content-Type: application/json
 
 {
-    "title": "The Dark Knight Rises"
+    "title": "El padrino",
+    "year": 1972
 }
 
 ### BORRAR UNA PELICULA
 
-DELETE http://localhost:1234/movies/c8a7d63f-3b04-44d3-9d95-8782fd7dcfaf
+DELETE http://localhost:1234/movies/3e98c6a0-f845-11ef-aedd-089798eed6d2
 
