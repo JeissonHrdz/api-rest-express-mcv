@@ -1,28 +1,31 @@
 import { Router } from "express";
 import { readJSON } from "../util.js";
 import { MovieController } from "../controllers/movies.js";
-import { MovieModel } from "../models/mysql/movie.js";
 
-const movies = readJSON("./movies.json");
-export const moviesRouter = Router();
+export const createMovieRouter = ({ movieModel }) => {
+  const moviesRouter = Router();
 
-const movieController = new MovieController({movieModel: MovieModel});
+  const movies = readJSON("./movies.json");
 
-moviesRouter.get("/",movieController.getAll);
+  const movieController = new MovieController({ movieModel});
 
-moviesRouter.get("/:id", movieController.getById);
+  moviesRouter.get("/", movieController.getAll);
 
-moviesRouter.post("/", movieController.create);
+  moviesRouter.get("/:id", movieController.getById);
 
-moviesRouter.delete("/:id", movieController.delete);
+  moviesRouter.post("/", movieController.create);
 
-moviesRouter.patch("/:id", movieController.update);
+  moviesRouter.delete("/:id", movieController.delete);
 
-moviesRouter.options("/", (req, res) => {
-  const origin = req.header("origin");
-  if (ACCEPTED_ORIGINS.includes(origin) || !origin) {
-    res.header("Access-Control-Allow-Origin", origin);
-    res.header("Access-Control-Allow-Methods", "GET, POST, PATH, DELETE");
-  }
-  res.send(200);
-});
+  moviesRouter.patch("/:id", movieController.update);
+
+  moviesRouter.options("/", (req, res) => {
+    const origin = req.header("origin");
+    if (ACCEPTED_ORIGINS.includes(origin) || !origin) {
+      res.header("Access-Control-Allow-Origin", origin);
+      res.header("Access-Control-Allow-Methods", "GET, POST, PATH, DELETE");
+    }
+    res.send(200);
+  });
+  return moviesRouter;
+};
